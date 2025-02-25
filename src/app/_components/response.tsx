@@ -1,18 +1,12 @@
-"use client"
+interface ResponseProps {
+    message: string;
+    pending: boolean;
+}
 
-import { useState, useEffect } from "react";
-import { connectWebSocket } from "@/app/_lib/websocket";
-
-export function Response() {
-    const [receivedMessage, setReceivedMessage] = useState("Hello!");
-
-    useEffect(() => {
-        connectWebSocket(setReceivedMessage);
-    }, []);
-
+export const Response: React.FC<ResponseProps> = ({ message, pending }) => {
     return (
-        <div className="relative inline-block bg-orange-300 shadow-lg shadow-orange-200 rounded-2xl px-8 py-4 text-2xl font-medium text-white">
-            <p>{receivedMessage}</p>
+        <div id="response" className={"relative inline-block bg-orange-300 shadow-lg shadow-orange-200 rounded-2xl px-8 py-4 text-2xl font-medium text-white " + (pending ? "animate-bounce" : "")}>
+            <p className={pending ? "animate-pulse" : ""}>{pending ? "..." : message}</p>
             <div
                 className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0
                 border-l-8
@@ -25,4 +19,4 @@ export function Response() {
             />
         </div>
     );
-}
+};
