@@ -15,7 +15,7 @@ export const Input: React.FC<InputProps> = ({ pending }) => {
     };
 
     return (
-        <form id="chat-form" onSubmit={submit} className="relative mt-16">
+        <form id="chat-form" onSubmit={submit} className="absolute bottom-16">
             <input
                 type="text"
                 name="message"

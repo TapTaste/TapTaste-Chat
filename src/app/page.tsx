@@ -3,7 +3,7 @@ import { Chat } from "./_components/chat";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 items-center max-w-sm p-1">
+    <div className="h-full flex flex-col gap-8 justify-items-start items-center max-w-sm p-1 mt-20">
       <Avatar/>
       <Chat/>
     </div>
