@@ -1,5 +1,7 @@
 const WS_URL = process.env.CHAT_WEBSOCKET_URL as string;
+const WS_KEEP_ALIVE_INTERVAL = Number(process.env.CHAT_WEBSOCKET_KEEP_ALIVE_INTERVAL);
 
+let keepAliveTask: NodeJS.Timeout | null = null;
 let socket: WebSocket | null = null;
 let pending: string | null = null;
 
@@ -14,6 +16,15 @@ export function connectWebSocket(onMessage: (msg: string) => void) {
                 console.info(`Invio del messaggio in pending "${pending}"...`);
                 socket?.send(pending);
             }
+
+            if (keepAliveTask) {
+                clearInterval(keepAliveTask);
+                keepAliveTask = null;
+            }
+            keepAliveTask = setInterval(() => {
+                if (socket?.readyState === WebSocket.OPEN)
+                  socket.send("ping");
+            }, WS_KEEP_ALIVE_INTERVAL);
         };
 
         socket.onmessage = (event) => {
