@@ -7,7 +7,8 @@ interface ResponseProps {
 
 export const Response: React.FC<ResponseProps> = ({ message, pending }) => {
     const textSize = useMemo(() => {
-        if (message?.length > 200) return "text-base";
+        if (message?.length > 400) return "text-sm";
+        else if (message?.length > 200) return "text-base";
         else if (message?.length > 50) return "text-xl";
         else if (message?.length > 100) return "text-lg";
         return "";

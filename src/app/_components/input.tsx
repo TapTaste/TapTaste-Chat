@@ -20,6 +20,7 @@ export const Input: React.FC<InputProps> = ({ pending }) => {
                 type="text"
                 name="message"
                 value={message}
+                autoComplete="off"
                 onChange={(e) => {setMessage(e.target.value)}}
                 placeholder={pending ? "Caricamento in corso..." : "Scrivi..."}
                 className="focus:outline-none shadow-[0_5px_15px_0px_rgba(0,0,0,0.1)] py-4 px-8 pr-16 rounded-full text-md"

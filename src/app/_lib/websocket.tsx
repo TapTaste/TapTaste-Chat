@@ -29,17 +29,23 @@ export function connectWebSocket(onMessage: (msg: string) => void) {
 
         socket.onmessage = (event) => {
             const message = event.data;
-            console.info(`Nuovo messaggio ricevuto dal server "${message}"...`);
+
+            if (message === "pong") {
+                console.info("Risposta keep-alive ricevuta dal server.");
+                return;
+            } else
+                console.info(`Nuovo messaggio ricevuto dal server "${message}"...`);
+
             pending = null;
             onMessage(message);
         };
 
         socket.onerror = (error) => {
-            console.error("Errore WebSocket:", error);
+            console.warn("Errore WebSocket:", error);
         };
 
-        socket.onclose = () => {
-            console.info("WebSocket chiuso. Riconnessione in corso...");
+        socket.onclose = (event) => {
+            console.info(`WebSocket chiuso. Codice: ${event.code}`);
             setTimeout(() => connectWebSocket(onMessage), 1000);
         };
     }
