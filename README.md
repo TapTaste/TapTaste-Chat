@@ -1,36 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TapTaste Chat
+Il modulo TapTaste Chat rappresenta l'interfaccia utente del progetto TapTaste AI. Attraverso una chat semplice ed intuitiva, gli utenti possono comunicare con la mascotte virtuale (l’assistente AI basato sul NLP di OpenAI) per ricevere suggerimenti sui piatti da ordinare.
 
-## Getting Started
+## Avvio
 
-First, run the development server:
+Per iniziare, avvia il server di sviluppo eseguendo il comando:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Una volta avviato, apri [http://localhost:3000](http://localhost:3000) sul browser per visualizzare il risultato.
+Assicurati che il WebSocket server (TapTaste Roboadvisor) sia attivo e configurato correttamente. Questo è fondamentale affinché i messaggi vengano inviati e ricevuti correttamente dal modello AI.
+Se necessario, aggiorna l'URL del WebSocket nel file .env per puntare al server giusto.
