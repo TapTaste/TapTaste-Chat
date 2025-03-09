@@ -23,19 +23,13 @@ export function connectWebSocket(onMessage: (msg: string) => void) {
             }
             keepAliveTask = setInterval(() => {
                 if (socket?.readyState === WebSocket.OPEN)
-                  socket.send("ping");
+                  socket.send("PING_REQUEST");
             }, WS_KEEP_ALIVE_INTERVAL);
         };
 
         socket.onmessage = (event) => {
             const message = event.data;
-
-            if (message === "pong") {
-                console.info("Risposta keep-alive ricevuta dal server.");
-                return;
-            } else
-                console.info(`Nuovo messaggio ricevuto dal server "${message}"...`);
-
+            console.info(`Nuovo messaggio ricevuto dal server "${message}"...`);
             pending = null;
             onMessage(message);
         };
