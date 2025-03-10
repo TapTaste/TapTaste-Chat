@@ -2,7 +2,6 @@
 Il modulo TapTaste Chat rappresenta l'interfaccia utente del progetto TapTaste AI. Attraverso una chat semplice ed intuitiva, gli utenti possono comunicare con la mascotte virtuale (l’assistente AI basato sul NLP di OpenAI) per ricevere suggerimenti sui piatti da ordinare.
 
 ## Avvio
-
 Per iniziare, installa le librerie con il seguente comando:
 
 ```bash
@@ -27,9 +26,10 @@ Prima dell'utilizzo, assicurati che il WebSocket server (TapTaste Roboadvisor) s
 Se necessario, aggiorna l'URL del WebSocket nel file .env per puntare al server giusto.
 
 ## Docker
-
 Puoi creare un'immagine Docker del progetto pronta all'uso per **TapTaste Playground** con il seguente comando:
 
 ```bash
 docker build -t taptaste-chat .
 ```
+
+> Assicurati di aver creato e configurato correttamente il file `.env` prima di eseguire questo comando!
