@@ -21,10 +21,11 @@ export function connectWebSocket(onMessage: (msg: string) => void) {
                 clearInterval(keepAliveTask);
                 keepAliveTask = null;
             }
-            keepAliveTask = setInterval(() => {
-                if (socket?.readyState === WebSocket.OPEN)
-                  socket.send("PING_REQUEST");
-            }, WS_KEEP_ALIVE_INTERVAL);
+            if (WS_KEEP_ALIVE_INTERVAL > 0)
+                keepAliveTask = setInterval(() => {
+                    if (socket?.readyState === WebSocket.OPEN)
+                    socket.send("PING_REQUEST");
+                }, WS_KEEP_ALIVE_INTERVAL);
         };
 
         socket.onmessage = (event) => {
@@ -44,6 +45,29 @@ export function connectWebSocket(onMessage: (msg: string) => void) {
         };
     }
 }
+export function closeWebSocket() {
+    if (!socket) {
+        console.error("Impossibile chiudere il WebSocket poiché non è definito.");
+        return;
+    }
+    switch (socket.readyState) {
+        case WebSocket.CLOSED:
+            console.error("Impossibile chiudere il WebSocket già chiuso.");
+            break;
+        case WebSocket.CLOSING:
+            console.warn("WebSocket già in fase di chiusura.");
+            break;
+        default:
+            socket.close(1000, "Chiusura tramite chat.");
+            socket = null;
+            console.info("WebSocket chiuso con successo.");
+            break;
+    }
+    if (keepAliveTask)
+        clearInterval(keepAliveTask);
+    if (pending)
+        pending = null;
+}
 
 export function sendSocketMessage(message: string) {
     if (pending) {
@@ -59,4 +83,8 @@ export function sendSocketMessage(message: string) {
 
 export function isMessagePending(): boolean {
     return pending !== null;
+}
+
+export function isSocketReady(): boolean {
+    return socket !== null && (socket.readyState === WebSocket.CONNECTING || socket.readyState === WebSocket.OPEN);
 }

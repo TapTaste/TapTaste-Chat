@@ -1,22 +1,22 @@
 import { useMemo } from "react";
 
 interface ResponseProps {
-    message: string;
+    message: string | null;
     pending: boolean;
 }
 
 export const Response: React.FC<ResponseProps> = ({ message, pending }) => {
     const textSize = useMemo(() => {
-        if (message?.length > 400) return "text-sm";
-        else if (message?.length > 200) return "text-base";
-        else if (message?.length > 50) return "text-xl";
-        else if (message?.length > 100) return "text-lg";
-        return "";
+        if (!message) return "";
+        else if (message.length > 400) return "text-sm";
+        else if (message.length > 200) return "text-base";
+        else if (message.length > 100) return "text-xl";
+        else return "text-lg";
     }, [message]);
 
     return (
         <div id="response" className={`relative inline-block bg-orange-300 shadow-lg shadow-orange-200 rounded-2xl px-8 py-4 text-2xl font-medium text-white ${textSize} ${pending ? "animate-bounce" : ""}`}>
-            {pending ? (
+            {!message || pending ? (
                 <p className={`animate-pulse `}>...</p>
             ) : (
                 <div id="response" dangerouslySetInnerHTML={{ __html: message }} />
