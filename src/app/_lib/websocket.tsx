@@ -84,7 +84,3 @@ export function sendSocketMessage(message: string) {
 export function isMessagePending(): boolean {
     return pending !== null;
 }
-
-export function isSocketReady(): boolean {
-    return socket !== null && (socket.readyState === WebSocket.CONNECTING || socket.readyState === WebSocket.OPEN);
-}

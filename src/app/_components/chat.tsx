@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 
-import { connectWebSocket, closeWebSocket, isMessagePending, sendSocketMessage, isSocketReady } from "@/app/_lib/websocket";
+import { connectWebSocket, closeWebSocket, isMessagePending, sendSocketMessage } from "@/app/_lib/websocket";
 import { Input } from "./input";
 import { Response } from "./response";
 
