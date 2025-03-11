@@ -15,10 +15,12 @@ export const Response: React.FC<ResponseProps> = ({ message, pending }) => {
     }, [message]);
 
     return (
-        <div id="response" className={"relative inline-block bg-orange-300 shadow-lg shadow-orange-200 rounded-2xl px-8 py-4 text-2xl font-medium text-white " + (pending ? "animate-bounce" : "")}>
-            <p className={`${pending ? "animate-pulse" : ""} ${textSize}`}>
-                {pending ? "..." : message}
-            </p>
+        <div id="response" className={`relative inline-block bg-orange-300 shadow-lg shadow-orange-200 rounded-2xl px-8 py-4 text-2xl font-medium text-white ${textSize} ${pending ? "animate-bounce" : ""}`}>
+            {pending ? (
+                <p className={`animate-pulse `}>...</p>
+            ) : (
+                <div id="response" dangerouslySetInnerHTML={{ __html: message }} />
+            )}
             <div
                 className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0
                 border-l-8
