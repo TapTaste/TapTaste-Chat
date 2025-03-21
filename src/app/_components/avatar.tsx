@@ -8,7 +8,7 @@ export function Avatar() {
             alt="Chef"
             width={384}
             height={0}
-            className="max-w-[128px] sm:max-w-[192px] md:max-w-[256px]"
+            className="max-w-[192px] md:max-w-[256px]"
             style={{ width: '100%', height: 'auto' }}
         />
     );

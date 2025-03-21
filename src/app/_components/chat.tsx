@@ -7,6 +7,7 @@ import DOMPurify from "dompurify";
 import { connectWebSocket, closeWebSocket, isMessagePending, sendSocketMessage } from "@/app/_lib/websocket";
 import { Input } from "./input";
 import { Response } from "./response";
+import { Avatar } from "./avatar";
 
 export function Chat() {
     const [receivedMessage, setReceivedMessage] = useState<string | null>(null);
@@ -51,12 +52,15 @@ export function Chat() {
     }, []);
 
     return (
-        <>
-            <Response message={receivedMessage} pending={pending}/>
-            <div className="absolute bottom-8">
+        <div className="h-full flex flex-col justify-between">
+            <div className="flex flex-col items-center justify-center gap-8">
+                <Avatar/>
+                <Response message={receivedMessage} pending={pending}/>
+            </div>
+            <div>
                 <Input pending={pending}/>
                 {receivedMessage && <p onClick={reset} className="mt-4 text-center text-slate-300 hover:text-slate-600 duration-300 cursor-pointer">Ricomincia la conversazione</p>}
             </div>
-        </>
+        </div>
     );
 }
