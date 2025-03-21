@@ -53,7 +53,7 @@ export function Chat() {
     return (
         <>
             <Response message={receivedMessage} pending={pending}/>
-            <div className="absolute bottom-16">
+            <div className="absolute bottom-8">
                 <Input pending={pending}/>
                 {receivedMessage && <p onClick={reset} className="mt-4 text-center text-slate-300 hover:text-slate-600 duration-300 cursor-pointer">Ricomincia la conversazione</p>}
             </div>
